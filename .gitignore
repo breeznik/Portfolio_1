@@ -2,5 +2,5 @@
 /public
 .firebaserc
 firebase.json
-firebaseScript.json
 .firebase
+firebase.js
