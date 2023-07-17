@@ -1,0 +1,6 @@
+.vscode
+/public
+.firebaserc
+firebase.json
+firebaseScript.json
+.firebase
