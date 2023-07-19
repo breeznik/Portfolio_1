@@ -30,7 +30,7 @@ function detectDevice() {
   return isMobile ? true : false;
 }
 
-function navRedner(pageIndex) {
+function navRender(pageIndex) {
   if (!detectDevice()) {
     nav.innerHTML = `<div class="navitem left ${
       pageIndex === 0 ? "selectedNav" : ""
@@ -53,45 +53,48 @@ function navRedner(pageIndex) {
     }">CONTACT</div>`;
   }
 }
-function ContactRedner(isMobile) {
+function ContactRender(isMobile) {
   if (!isMobile) {
     contactpage.innerHTML = `
-    <div class="contact" onclick="openInstagram('i')">
-    <img src="./assets/instagram1.png" alt="" class="contactImg" />
-    <span class="contactText">INSTAGRAM</span>
-  </div>
-  
-  <div class="contact" onclick="openInstagram('l')">
-    <img src="./assets/linkedin1.png" alt="" class="contactImg" />
-    <span class="contactText">LINKEDIN</span>
-  </div>
-  
-  <div class="contact" onclick="openInstagram('g')">
-    <img src="./assets/gmail1.png" alt="" class="contactImg" />
-    <span class="contactText">GMAIL</span>
-  </div>
-  
+      <div class="contact" onclick="openInstagram('i')">
+        <img src="./assets/instagram1.png" alt="" class="contactImg" />
+        <span class="contactText">INSTAGRAM</span>
+      </div>
+
+      <div class="contact" onclick="openInstagram('l')">
+        <img src="./assets/linkedin1.png" alt="" class="contactImg" />
+        <span class="contactText">LINKEDIN</span>
+      </div>
+
+      <div class="contact" onclick="openInstagram('g')">
+        <img src="./assets/gmail1.png" alt="" class="contactImg" />
+        <span class="contactText">GMAIL</span>
+      </div>
     `;
-  } else if (isMobile) {
+  } else {
     contactpage.innerHTML = `
-    <div class="contact" onclick="openInstagram('i')">
-    <img src="./assets/instagram1.png" alt="" class="contactImg" />
-    <span class="contactText">INSTAGRAM</span>
-  </div>
-  
-  <div class="contact" onclick="openInstagram('l')">
-    <img src="./assets/linkedin1.png" alt="" class="contactImg" />
-    <span class="contactText">LINKEDIN</span>
-  </div>
-  
-  <a class="contact" href="mailto:newraozxcode@gmail.com">
-    <img src="./assets/gmail1.png" alt="" class="contactImg" />
-    <span class="contactText">Gmail</span>
-  </a>
-  <div class="resumeDownload">DOWNLOAD RESUME</div>
+      <div class="contact" onclick="openInstagram('i')">
+        <img src="./assets/instagram1.png" alt="" class="contactImg" />
+        <span class="contactText">INSTAGRAM</span>
+      </div>
+
+      <div class="contact" onclick="openInstagram('l')">
+        <img src="./assets/linkedin1.png" alt="" class="contactImg" />
+        <span class="contactText">LINKEDIN</span>
+      </div>
+
+      <a class="contact" href="mailto:newraozxcode@gmail.com">
+        <img src="./assets/gmail1.png" alt="" class="contactImg" />
+        <span class="contactText">Gmail</span>
+      </a>
+      
+      <div class="resumeDownload" onclick="DownloadeResume()">
+        DOWNLOAD RESUME
+      </div>
     `;
   }
 }
+
 function skillpageRedner(isPhone) {
   console.log("isphone : ", isPhone);
   if (isPhone) {
@@ -218,8 +221,9 @@ function ProjectDataRender(projectIndex) {
   }
 }
 
-navRedner(0);
+navRender(0);
 skillpageRedner(detectDevice());
+ContactRender(detectDevice());
 
 nav.addEventListener("click", (e) => {
   const SelectedPage = e.target.textContent;
@@ -230,12 +234,13 @@ nav.addEventListener("click", (e) => {
     root.style.transform = `translateX(${-100 * pageIndex}vw)`;
   }
 
-  navRedner(pageIndex);
+  navRender(pageIndex);
   if (pageIndex === 1) {
-    ProjectDataRender(0);
+    console.log("project data render ", gloableProjectSelection);
+    ProjectDataRender(gloableProjectSelection);
   }
   if (pageIndex === 2) {
-    ContactRedner(detectDevice());
+    ContactRender(detectDevice());
   }
 });
 
